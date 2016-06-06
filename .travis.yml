@@ -13,13 +13,13 @@ matrix:
 
 
 before_install:
- - sudo apt-get -y install software-properties-common
- - sudo apt-add-repository -y $ANSIBLE_VERSION
- - sudo apt-get -y update
+ - apt-get -y install software-properties-common
+ - apt-add-repository -y $ANSIBLE_VERSION
+ - apt-get -y update
 
 install:
   # Install ansible
-  - sudo apt-get -y install ansible
+  - apt-get -y install ansible
 
   # Check ansible version
   - ansible --version
