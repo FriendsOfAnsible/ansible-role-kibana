@@ -1,0 +1,10 @@
+---
+# defaults file for ansible-role-kibana
+kibana_version: "4.5"
+
+# debian / ubuntu apt variables
+apt_key_url: https://packages.elastic.co/GPG-KEY-elasticsearch
+apt_repo: "deb http://packages.elastic.co/kibana/{{ kibana_version }}/debian stable main"
+
+# allow supplying nodejs options
+node_options: "--max-old-space-size=250"
