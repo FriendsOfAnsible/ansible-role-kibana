@@ -1,5 +1,4 @@
 ---
-# handlers file for ansible-role-kibana
 - name: kibana restart
   service:
     name: kibana

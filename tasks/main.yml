@@ -1,10 +1,10 @@
 ---
-- name: Ensure new Elastic apt signing key is present
+- name: Ensure Elastic apt signing key is present
   apt_key:
     url: "{{ apt_key_url }}"
     state: present
 
-- name: Ensure new kibana repo is present
+- name: Ensure kibana repo is present
   apt_repository:
     repo: "{{ apt_repo }}"
     state: present

@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Friends Of Ansible
   description: Ansible role to provision Kibana >= 4.5.x
