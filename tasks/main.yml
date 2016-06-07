@@ -16,7 +16,14 @@
     - kibana  
 
 - name: Ensure Kibana is started on boot
-  service: name=kibana enabled=true
+  service: 
+    name: kibana
+    enabled: true
+
+#- name: Configure kibana.yml
+#  template:
+#    src:
+#    dest: 
 
 - name: Ensure node_options are set up
   lineinfile:
@@ -25,3 +32,4 @@
     regexp: "^export\ NODE_OPTIONS"
     line: "export NODE_OPTIONS=\"{{ node_options }}\""
   when: node_options != ""  
+  notify: kibana restart
