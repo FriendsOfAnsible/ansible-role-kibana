@@ -1,5 +1,7 @@
-Role Name
-=========
+FriendsOfAnsible.kibana
+=======================
+
+[![Build Status](https://travis-ci.org/FriendsOfAnsible/ansible-role-kibana.svg?branch=master)](https://travis-ci.org/FriendsOfAnsible/ansible-role-kibana)
 
 Simple role to provision Kibana >= 4.5.x
 
