@@ -33,9 +33,11 @@ Role Variables
 Example Playbook
 ----------------
 
-    - hosts: servers
-      roles:
-         - FriendsOfAnsible.kibana
+```yaml
+- hosts: servers
+  roles:
+     - FriendsOfAnsible.kibana
+```         
 
 License
 -------
