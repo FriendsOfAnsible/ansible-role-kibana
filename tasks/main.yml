@@ -12,7 +12,7 @@
 
 - name: Install kibana
   apt:
-    pkg: "{{item}}"
+    pkg: "{{ item }}"
     state: latest
   with_items:
     - kibana
@@ -26,7 +26,7 @@
   template:
     src: kibana.yml.j2
     dest: /opt/kibana/config/kibana.yml
-  notify: kibana restart  
+  notify: kibana restart
 
 - name: Ensure node_options are set up
   lineinfile:
