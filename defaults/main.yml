@@ -1,5 +1,5 @@
 ---
-# defaults file for ansible-role-kibana
+# kibana version to install
 kibana_version: "4.5"
 
 # debian / ubuntu apt variables
@@ -8,3 +8,9 @@ apt_repo: "deb http://packages.elastic.co/kibana/{{ kibana_version }}/debian st
 
 # allow supplying nodejs options
 node_options: "--max-old-space-size=250"
+
+# kibana config
+kibana_port: 5601
+kibana_host: "0.0.0.0"
+elasticsearch_url: "http://localhost:9200"
+kibana_index: ".kibana"

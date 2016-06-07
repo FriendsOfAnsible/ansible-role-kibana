@@ -1,29 +1,32 @@
 ---
 - name: Ensure new Elastic apt signing key is present
-  apt_key: 
+  apt_key:
     url: "{{ apt_key_url }}"
     state: present
 
 - name: Ensure new kibana repo is present
-  apt_repository: 
+  apt_repository:
     repo: "{{ apt_repo }}"
     state: present
     update_cache: yes
 
 - name: Install kibana
-  apt: pkg={{item}} state=latest
+  apt:
+    pkg: "{{item}}"
+    state: latest
   with_items:
-    - kibana  
+    - kibana
 
 - name: Ensure Kibana is started on boot
-  service: 
+  service:
     name: kibana
     enabled: true
 
-#- name: Configure kibana.yml
-#  template:
-#    src:
-#    dest: 
+- name: Configure kibana.yml
+  template:
+    src: kibana.yml.j2
+    dest: /opt/kibana/config/kibana.yml
+  notify: kibana restart  
 
 - name: Ensure node_options are set up
   lineinfile:
@@ -31,5 +34,4 @@
     insertafter: "^export\ PATH"
     regexp: "^export\ NODE_OPTIONS"
     line: "export NODE_OPTIONS=\"{{ node_options }}\""
-  when: node_options != ""  
   notify: kibana restart

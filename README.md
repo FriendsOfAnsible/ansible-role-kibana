@@ -1,22 +1,32 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Simple role to provision Kibana >= 4.5.x
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Ansible >= 1.9
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```yaml
+- vars:
+  kibana_version: "4.5" # kibana version to install
 
-Dependencies
-------------
+  # debian / ubuntu apt variables
+  apt_key_url: https://packages.elastic.co/GPG-KEY-elasticsearch # url for the apt repo key
+  apt_repo: "deb http://packages.elastic.co/kibana/{{ kibana_version }}/debian stable main" # apt repo to install kibana from
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+  node_options: "--max-old-space-size=250" # NodeJS options, by default limiting the memory node will consume
+
+  # kibana config
+  kibana_port: 5601 # The port kibana listens to
+  kibana_host: "0.0.0.0" # The host to bind the server to.
+  elasticsearch_url: "http://localhost:9200" # Elasticsearch host that will be used by Kibana
+  kibana_index: ".kibana" # Elasticsearch index where kibana will store its config
+```
 
 Example Playbook
 ----------------
@@ -25,14 +35,9 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - FriendsOfAnsible.kibana
 
 License
 -------
 
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+MIT
